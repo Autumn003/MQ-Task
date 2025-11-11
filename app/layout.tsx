@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { QuickAppsBar } from "@/components/home/quick-apps-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <FloatingNav />
         {children}
+        <div className="fixed bottom-0 right-5 md:w-full mb-4 flex md:justify-center">
+          <QuickAppsBar />
+        </div>
       </body>
     </html>
   );
