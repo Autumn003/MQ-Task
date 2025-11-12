@@ -6,69 +6,101 @@ import { FloatingBase } from "../ui/floating-base";
 
 export function QuickAppsBar() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState([0, 1, 2, 3]); // Initially show first 4 items
-
-  const openWindow = (url: string) => {
-    console.log("Opening URL:", url);
-  };
-
-  const allLinks = [
+  const [selectedItems, setSelectedItems] = useState<number[]>([0, 1, 2, 3]);
+  const [links, setLinks] = useState(() => [
     {
       title: "QMask",
-      icon: (
-        <img src="/qmask.png" width={100} height={100} alt="Aceternity Logo" />
-      ),
-      onClick: () => openWindow("Random"),
+      icon: <img src="/qmask.png" width={100} height={100} alt="QMask Logo" />,
+      status: "closed",
+      minimized: true,
     },
     {
       title: "QShop",
-      icon: (
-        <img src="/qshop.png" width={100} height={100} alt="Aceternity Logo" />
-      ),
-      onClick: () => openWindow("Random"),
+      icon: <img src="/qshop.png" width={100} height={100} alt="QShop Logo" />,
+      status: "closed",
+      minimized: true,
     },
     {
       title: "MQPY",
-      icon: (
-        <img src="/mqpy.png" width={100} height={100} alt="Aceternity Logo" />
-      ),
-      onClick: () => openWindow("Random"),
+      icon: <img src="/mqpy.png" width={100} height={100} alt="MQPY Logo" />,
+      status: "closed",
+      minimized: true,
     },
     {
       title: "QMail",
-      icon: (
-        <img src="/qmail.png" width={100} height={100} alt="Aceternity Logo" />
-      ),
-      onClick: () => openWindow("Random"),
+      icon: <img src="/qmail.png" width={100} height={100} alt="QMail Logo" />,
+      status: "closed",
+      minimized: true,
     },
     {
       title: "Dev Hub",
       icon: (
-        <img src="/devhub.png" width={100} height={100} alt="Aceternity Logo" />
+        <img src="/devhub.png" width={100} height={100} alt="Dev Hub Logo" />
       ),
-      onClick: () => openWindow("Random"),
+      status: "closed",
+      minimized: true,
     },
     {
       title: "QDeep",
       icon: (
-        <img
-          src="/spider-logo.png"
-          width={100}
-          height={100}
-          alt="Aceternity Logo"
-          className=""
-        />
+        <img src="/spider-logo.png" width={100} height={100} alt="QDeep Logo" />
       ),
-      onClick: () => openWindow("Random"),
+      status: "closed",
+      minimized: true,
     },
     {
       title: "QTrade",
       icon: (
-        <img src="/qtrade.png" width={100} height={100} alt="Aceternity Logo" />
+        <img src="/qtrade.png" width={100} height={100} alt="QTrade Logo" />
       ),
-      onClick: () => openWindow("Random"),
+      status: "closed",
+      minimized: true,
     },
-  ];
+  ]);
+
+  // Always include open apps
+  useEffect(() => {
+    const openIndexes = links
+      .map((link, index) => (link.status === "open" ? index : null))
+      .filter((i): i is number => i !== null);
+    setSelectedItems((prev) => Array.from(new Set([...prev, ...openIndexes])));
+  }, [links]);
+
+  // Apps click handler
+  const handleIconClick = (index: number) => {
+    const current = links[index];
+
+    if (current.status === "closed") {
+      // First open: unminimize it
+      console.log(`Opening ${current.title}...`);
+      setTimeout(() => {
+        setLinks((prev) =>
+          prev.map((item, i) =>
+            i === index ? { ...item, status: "open", minimized: false } : item
+          )
+        );
+        console.log(
+          `${current.title} is now open (minimized: ${current.minimized}).`
+        );
+      }, 1000);
+      setTimeout(() => {
+        console.log("minimized settttt: ", current.minimized);
+      }, 2000);
+    } else if (current.status === "open") {
+      // Already open → toggle minimized
+      console.log(`Toggling ${current.title} minimized state...`);
+      setTimeout(() => {
+        setLinks((prev) =>
+          prev.map((item, i) =>
+            i === index ? { ...item, minimized: !item.minimized } : item
+          )
+        );
+        console.log(
+          `${current.title} minimized state toggled to: ${!current.minimized}`
+        );
+      }, 1000);
+    }
+  };
 
   const toggleItem = (index: number) => {
     if (selectedItems.includes(index)) {
@@ -78,12 +110,15 @@ export function QuickAppsBar() {
     }
   };
 
-  // Get visible apps based on selection
+  // Build visible apps
   const visibleLinks = selectedItems
     .sort((a, b) => a - b)
-    .map((index) => allLinks[index]);
+    .map((index) => ({
+      ...links[index],
+      onClick: () => handleIconClick(index),
+    }));
 
-  // Add the "+" button to open dialog
+  // Add “Add Apps” button
   const linksWithAddButton = [
     ...visibleLinks,
     {
@@ -101,14 +136,12 @@ export function QuickAppsBar() {
         <FloatingBase mobileClassName="" items={linksWithAddButton} />
       </div>
 
-      {/* Dialog/Modal */}
+      {/* Dialog */}
       {isDialogOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center mt-16 justify-center bg-black/50 backdrop-blur-sm"
           onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setIsDialogOpen(false);
-            }
+            if (e.target === e.currentTarget) setIsDialogOpen(false);
           }}
         >
           <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
@@ -129,9 +162,8 @@ export function QuickAppsBar() {
             </p>
 
             <div className="space-y-2 max-h-52 overflow-y-auto custom-scrollbar">
-              {allLinks.map((link, index) => {
+              {links.map((link, index) => {
                 const isSelected = selectedItems.includes(index);
-
                 return (
                   <div
                     key={index}
@@ -146,7 +178,7 @@ export function QuickAppsBar() {
                       </span>
                     </div>
 
-                    {/* Toggle Button */}
+                    {/* Toggle Switch */}
                     <button
                       onClick={() => toggleItem(index)}
                       className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 ${

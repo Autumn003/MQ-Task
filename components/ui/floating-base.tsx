@@ -120,11 +120,13 @@ function IconContainer({
   title,
   icon,
   onClick,
+  status,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   onClick: () => void;
+  status?: "open" | "closed";
 }) {
   let ref = useRef<HTMLDivElement>(null);
 
@@ -137,7 +139,6 @@ function IconContainer({
   let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
   let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
 
-  //   let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
   let heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
@@ -155,11 +156,6 @@ function IconContainer({
     damping: 12,
   });
 
-  //   let widthIcon = useSpring(widthTransformIcon, {
-  //     mass: 0.1,
-  //     stiffness: 150,
-  //     damping: 12,
-  //   });
   let heightIcon = useSpring(heightTransformIcon, {
     mass: 0.1,
     stiffness: 150,
@@ -196,9 +192,19 @@ function IconContainer({
               ? "drop-shadow(0 2px 5px rgba(0, 128, 226, 0.5)) drop-shadow(0 2px 50px rgba(0, 128, 226, 0.3))"
               : "none",
           }}
-          className="flex items-center justify-center transition-all duration-200 ease-in"
+          className={cn(
+            "flex items-center justify-center transition-all duration-200 ease-in",
+            status === "open" ? "opacity-100" : "opacity-70"
+          )}
         >
-          {icon}
+          {status === "open" ? (
+            <div className="">
+              {icon}
+              <div className="h-[3.5px] w-4 dark:bg-sky-400/80 bg-sky-300/80 mt-1 mx-auto rounded-full shadow-[0_0_8px_rgba(56,189,248,0.4)] dark:shadow-[0_0_10px_rgba(56,189,248,0.7)]" />
+            </div>
+          ) : (
+            icon
+          )}
         </motion.div>
       </motion.div>
     </button>
