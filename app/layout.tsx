@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <FloatingNav />
         {children}
-        <div className="fixed bottom-0 right-5 md:w-full mb-4 flex md:justify-center">
+        <div className="fixed bottom-0 right-5 md:w-full mb-4 flex md:justify-center z-50">
           <QuickAppsBar />
         </div>
       </body>
