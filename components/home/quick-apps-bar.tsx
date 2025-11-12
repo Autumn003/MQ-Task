@@ -8,41 +8,45 @@ export function QuickAppsBar() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([0, 1, 2, 3]); // Initially show first 4 items
 
+  const openWindow = (url: string) => {
+    console.log("Opening URL:", url);
+  };
+
   const allLinks = [
     {
       title: "QMask",
       icon: (
         <img src="/qmask.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "QShop",
       icon: (
         <img src="/qshop.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "MQPY",
       icon: (
         <img src="/mqpy.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "QMail",
       icon: (
         <img src="/qmail.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "Dev Hub",
       icon: (
         <img src="/devhub.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "QDeep",
@@ -55,14 +59,14 @@ export function QuickAppsBar() {
           className=""
         />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
     {
       title: "QTrade",
       icon: (
         <img src="/qtrade.png" width={100} height={100} alt="Aceternity Logo" />
       ),
-      href: "#",
+      onClick: () => openWindow("Random"),
     },
   ];
 
@@ -74,12 +78,12 @@ export function QuickAppsBar() {
     }
   };
 
-  // Get visible links based on selection
+  // Get visible apps based on selection
   const visibleLinks = selectedItems
     .sort((a, b) => a - b)
     .map((index) => allLinks[index]);
 
-  // Add the "+" button to open dialog with a special href
+  // Add the "+" button to open dialog
   const linksWithAddButton = [
     ...visibleLinks,
     {
@@ -87,23 +91,9 @@ export function QuickAppsBar() {
       icon: (
         <IconPlus className="h-full w-full text-neutral-500 dark:text-neutral-300 sm:bg-neutral-800 rounded-full" />
       ),
-      href: "#open-dialog",
+      onClick: () => setIsDialogOpen(true),
     },
   ];
-
-  // Listen for clicks on the add button
-  useEffect(() => {
-    const handleClick = (e: any) => {
-      const target = e.target.closest('a[href="#open-dialog"]');
-      if (target) {
-        e.preventDefault();
-        setIsDialogOpen(true);
-      }
-    };
-
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, []);
 
   return (
     <>
