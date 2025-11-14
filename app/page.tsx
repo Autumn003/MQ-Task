@@ -3,6 +3,7 @@
 import { Spotlight } from "@/components/home/hero";
 import { QuickAppsBar } from "@/components/home/quick-apps-bar";
 import { Window } from "@/components/ui/window";
+import { AnimatePresence } from "motion/react";
 import React, { useState } from "react";
 
 export default function Home() {
@@ -81,20 +82,22 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative min-h-screen w-full h-full ">
       <div>
-        {apps.map((app, index) =>
-          app.status === "open" && !app.minimized ? (
-            <Window
-              key={index}
-              title={app.title}
-              onClose={() => handleAppClose(index)}
-              onMinimize={() => handleToggleMinimize(index)}
-            >
-              {appConfigs[index].content}
-            </Window>
-          ) : null
-        )}
+        <AnimatePresence mode="popLayout">
+          {apps.map((app, index) =>
+            app.status === "open" && !app.minimized ? (
+              <Window
+                key={index}
+                title={app.title}
+                onClose={() => handleAppClose(index)}
+                onMinimize={() => handleToggleMinimize(index)}
+              >
+                {appConfigs[index].content}
+              </Window>
+            ) : null
+          )}
+        </AnimatePresence>
 
         <div className="fixed bottom-0 right-5 md:w-full mb-4 flex md:justify-center z-200">
           <QuickAppsBar
