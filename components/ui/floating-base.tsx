@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
@@ -7,15 +8,19 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-
-import { useRef, useState } from "react";
+import { IconAppsFilled } from "@tabler/icons-react";
 
 export const FloatingBase = ({
   items,
   desktopClassName,
   mobileClassName,
 }: {
-  items: { title: string; icon: React.ReactNode; onClick: () => void }[];
+  items: {
+    title: string;
+    icon: React.ReactNode;
+    onClick: () => void;
+    status: any;
+  }[];
   desktopClassName?: string;
   mobileClassName?: string;
 }) => {
@@ -31,7 +36,12 @@ const FloatingDockMobile = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; onClick: () => void }[];
+  items: {
+    title: string;
+    icon: React.ReactNode;
+    onClick: () => void;
+    status: any;
+  }[];
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
@@ -63,9 +73,15 @@ const FloatingDockMobile = ({
                 <button
                   onClick={() => {
                     item.onClick();
+                    console.log("status neww", item.status);
                   }}
                   key={item.title}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  className={cn(
+                    "flex h-14 w-14 items-center justify-center rounded-full backdrop-blur-sm border transition-colors duration-200 ease-in",
+                    item.status === "open"
+                      ? "bg-sky-500/20 dark:bg-sky-600/30 border-sky-500/30"
+                      : "bg-neutral-400/20  dark:bg-neutral-500/20 border-neutral-500/30"
+                  )}
                 >
                   <div className="h-10 w-10">{item.icon}</div>
                 </button>
@@ -76,16 +92,9 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-200/20 dark:bg-neutral-200/10 backdrop-blur-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] border border-gray-300/30 dark:border-neutral-500/30 transition-colors duration-200 ease-in"
       >
-        <div className="h-10 w-10 text-neutral-500 dark:text-neutral-400">
-          <img
-            src="/mq-logo.png"
-            width={100}
-            height={100}
-            alt="Aceternity Logo"
-          />
-        </div>
+        <IconAppsFilled className="h-8 w-8 text-neutral-300" />
       </button>
     </div>
   );
@@ -104,9 +113,13 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden h-16 items-end gap-4 rounded-2xl px-4 pb-3 md:flex dark:bg-sky-600/10 bg-sky-300/10 backdrop-blur-sm border dark:border-sky-900/30 border-sky-300/20 ",
+        "mx-auto hidden h-16 items-end gap-4 rounded-2xl px-4 pb-3 md:flex ",
         className
       )}
+      // className={cn(
+      //   "mx-auto hidden h-16 items-end gap-4 rounded-2xl px-4 pb-3 md:flex dark:bg-sky-600/10 bg-sky-300/10 backdrop-blur-sm border dark:border-sky-900/30 border-sky-300/20 ",
+      //   className
+      // )}
     >
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
@@ -194,7 +207,7 @@ function IconContainer({
           }}
           className={cn(
             "flex items-center justify-center transition-all duration-200 ease-in",
-            status === "open" ? "opacity-100" : "opacity-70"
+            status === "open" ? "opacity-100" : "opacity-80"
           )}
         >
           {status === "open" ? (
