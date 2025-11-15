@@ -18,6 +18,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import SearchBox from "./search-box";
+import { SignupForm } from "../authentication/signup";
 
 export const FloatingNav = ({
   navItems,
@@ -34,6 +35,7 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -54,6 +56,20 @@ export const FloatingNav = ({
 
   return (
     <div className=" px-5">
+      {isSignupOpen && (
+        <>
+          {/* Blur + dark overlay */}
+          <div
+            className="fixed inset-0 z-60 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsSignupOpen(false)}
+          />
+
+          {/* Centered Signup component */}
+          <div className="fixed top-1/2 left-1/2 z-70 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl">
+            <SignupForm />
+          </div>
+        </>
+      )}
       <AnimatePresence mode="wait">
         <motion.div
           initial={{
@@ -110,7 +126,10 @@ export const FloatingNav = ({
           </div>
           <div className="flex items-center justify-around gap-2">
             <ThemeToggler />
-            <button className="border flex items-center justify-cente border-neutral-200 dark:border-white/20 p-1.5 rounded-xl shadow-[-2px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] cursor-pointer text-muted-foreground hover:text-secondary-foreground transition-all duration-200 ease-in-out">
+            <button
+              onClick={() => setIsSignupOpen(true)}
+              className="border flex items-center justify-cente border-neutral-200 dark:border-white/20 p-1.5 rounded-xl shadow-[-2px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] cursor-pointer text-muted-foreground hover:text-secondary-foreground transition-all duration-200 ease-in-out"
+            >
               <IconUser className="h-5 w-5 inline-block" />
             </button>
 
