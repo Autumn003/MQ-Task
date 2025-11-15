@@ -9,6 +9,9 @@ import {
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { WobbleCard } from "@/components/ui/card";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { Dashboard } from "@/components/wallet/dashboard";
 
 export function WalletWindow() {
   const links = [
@@ -93,29 +96,3 @@ export function WalletWindow() {
     </div>
   );
 }
-
-// Dummy dashboard component with content
-const Dashboard = () => {
-  return (
-    <div className="flex flex-1 h-full min-w-0">
-      <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
-        <div className="flex gap-2">
-          {[...new Array(4)].map((i, idx) => (
-            <div
-              key={"first-array-demo-1" + idx}
-              className="h-20 w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
-            ></div>
-          ))}
-        </div>
-        <div className="flex flex-1 gap-2">
-          {[...new Array(2)].map((i, idx) => (
-            <div
-              key={"second-array-demo-1" + idx}
-              className="h-full w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
-            ></div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
