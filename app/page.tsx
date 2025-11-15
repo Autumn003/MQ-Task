@@ -3,6 +3,7 @@
 import { Spotlight } from "@/components/home/hero";
 import { QuickAppsBar } from "@/components/home/quick-apps-bar";
 import { Window } from "@/components/ui/window";
+import { WalletWindow } from "@/windows/wallet-window";
 import { AnimatePresence } from "motion/react";
 import React, { useState } from "react";
 
@@ -11,7 +12,7 @@ export default function Home() {
     {
       title: "QMask",
       icon: <img src="/qmask.png" width={80} height={80} alt="QMask" />,
-      content: <div>QMask App</div>,
+      content: <WalletWindow />,
     },
     {
       title: "QShop",

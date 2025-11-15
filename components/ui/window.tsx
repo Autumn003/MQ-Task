@@ -11,7 +11,7 @@ import {
   IconX,
 } from "@tabler/icons-react";
 
-let topZIndex = 50; // ⭐ GLOBAL Z-INDEX COUNTER
+let topZIndex = 50;
 
 type WindowProps = {
   title: string;
@@ -42,7 +42,7 @@ export function Window({
 
   const containerRef = useRef(null);
 
-  const [zIndex, setZIndex] = useState(() => ++topZIndex); // ⭐ Bring new window to front
+  const [zIndex, setZIndex] = useState(() => ++topZIndex);
   const bringToFront = () => {
     topZIndex++;
     setZIndex(topZIndex);
@@ -191,7 +191,7 @@ export function Window({
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-40">
       <motion.div
-        onMouseDown={bringToFront} // ⭐ CLICK BRINGS WINDOW TO FRONT
+        onMouseDown={bringToFront}
         className={cn(
           "absolute bg-secondary border shadow-xl rounded-2xl flex flex-col overflow-hidden pointer-events-auto",
           isMaximized
@@ -202,7 +202,7 @@ export function Window({
         dragConstraints={containerRef}
         dragMomentum={false}
         dragElastic={0}
-        style={{ x, y, width, height, zIndex }} // ⭐ APPLY Z-INDEX
+        style={{ x, y, width, height, zIndex }}
         initial={{
           opacity: 0,
           scale: 0.75,
@@ -283,10 +283,12 @@ export function Window({
         </motion.div>
 
         {/* CONTENT */}
-        <div className="flex-1 overflow-auto p-4 bg-accent relative">
+        <div className="h-full w-full">
           <div className="absolute inset-0 bg-[url(https://grainy-gradients.vercel.app/noise.svg)] dark:opacity-18 opacity-30 contrast-150 pointer-events-none" />
+
           {children}
         </div>
+        {/* </div> */}
 
         {/* RESIZE HANDLES */}
         {!isMaximized && (
