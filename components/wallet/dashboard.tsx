@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import { WobbleCard } from "../ui/card";
-import { Check, Copy } from "lucide-react";
 import { motion } from "motion/react";
 import {
   IconDownload,
@@ -12,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { SendMQPY } from "../dashboard/send-MQPY";
 import { AccountOverview } from "../dashboard/account-overview";
+import { UsdOperations } from "../dashboard/usd-operations";
 
 // Sample user data
 const user = {
@@ -24,14 +23,14 @@ const user = {
 export const Dashboard = () => {
   return (
     <div className="flex flex-1 h-full min-w-0">
-      <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900 overflow-y-auto">
-        <div className="grid grid-cols-3 grid-rows-12 gap-6">
-          <div className="col-span-3">
+      <div className="container h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900 overflow-y-auto @container">
+        <div className="@lg:grid @lg:grid-cols-3 @lg:grid-rows-12 gap-6 flex flex-col">
+          {/* <div className="lg:col-span-3 flex">
             <div className="w-full h-full pt-10">
               <div className="bg-white h-full w-full"></div>
             </div>
-          </div>
-          <div className="col-span-2 row-span-3 row-start-2">
+          </div> */}
+          <div className="md:col-span-2 md:row-span-3 md:row-start-2">
             <WobbleCard
               containerClassName="col-span-1 lg:col-span-2 h-full min-h-[500px] lg:min-h-[300px]"
               className=""
@@ -97,15 +96,7 @@ export const Dashboard = () => {
               containerClassName="col-span-1 lg:col-span-2 h-full min-h-[500px] lg:min-h-[300px]"
               className=""
             >
-              <div className="max-w-xs">
-                <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-muted-foreground">
-                  Gippity AI powers the entire universe
-                </h2>
-                <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                  With over 100,000 mothly active bot users, Gippity AI is the
-                  most popular AI platform for developers.
-                </p>
-              </div>
+              <UsdOperations />
             </WobbleCard>
           </div>
           <div className="row-span-3 col-start-3 row-start-4">
