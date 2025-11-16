@@ -43,12 +43,11 @@ const notifications = [
 
 const IOSNotificationsStackDemo = () => {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center">
+    <div className="relative flex h-full w-full flex-col items-center justify-center my-5">
       <IOSNotificationsStack
         notifications={notifications}
-        className="rounded-4xl bg-[url(/media/iphone15-light.jpg)] bg-cover bg-center bg-no-repeat p-6 dark:bg-[url(/media/iphone15-dark.jpg)]"
+        className="rounded-4xl p-6 h-full"
       />
-      <div className="absolute bottom-1 h-1.25 w-28 rounded-full bg-neutral-800 dark:bg-neutral-300" />
     </div>
   );
 };

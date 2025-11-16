@@ -5,6 +5,7 @@ import { SendMQPY } from "../dashboard/send-MQPY";
 import { AccountOverview } from "../dashboard/account-overview";
 import { UsdOperations } from "../dashboard/usd-operations";
 import { ExpandableCard } from "../ui/expandable-card";
+import IOSNotificationsStackDemo from "../ios-notifications-stack-demo";
 
 // Sample user data
 const user = {
@@ -52,7 +53,7 @@ export const Dashboard = () => {
                 <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-muted-foreground">
                   Recent Activities
                 </h2>
-                <p className="mt-4 text-left  text-base/6 text-neutral-200"></p>
+                <IOSNotificationsStackDemo />
               </div>
             </WobbleCard>
           </div>

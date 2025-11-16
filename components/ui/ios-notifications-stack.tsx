@@ -188,7 +188,7 @@ export const IOSNotificationsStack = ({
   notifications,
   className,
 }: NotificationProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const [showAll, setShowAll] = useState(false);
   const [isCollapsing, setIsCollapsing] = useState(false);
 
@@ -262,13 +262,13 @@ export const IOSNotificationsStack = ({
   };
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative ", className)}>
       <motion.div
         initial="initial"
         animate={getContainerAnimationState()}
         variants={containerVariants}
         exit="collapse"
-        className="relative flex h-120 flex-col gap-2 overflow-auto"
+        className="relative flex min-h-120 flex-col gap-2 overflow-auto"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
