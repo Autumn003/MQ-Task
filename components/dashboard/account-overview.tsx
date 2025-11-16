@@ -16,12 +16,12 @@ export const AccountOverview = ({ user }: any) => {
     <div className="max-w-4xl mx-auto">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-12 @container">
-        <h4 className="text-3xl @md:text-4xl @lg:text-5xl font-bold bg-linear-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
+        <h4 className="text-3xl @md:text-4xl @lg:text-5xl font-bold bg-linear-to-r from-neutral-400 via-neutral-600 to-neutral-700 dark:from-white dark:via-neutral-200 dark:to-neutral-400 bg-clip-text text-transparent">
           Account Overview
         </h4>
         <div className="flex items-center gap-3">
           <div className="group relative px-3 py-1 rounded-full bg-linear-to-r from-amber-400/50 to-amber-600/50 border border-amber-500/30 backdrop-blur-sm hover:border-amber-400/50 transition-all duration-300 shadow-inner dark:shadow-amber-300/70 shadow-amber-200/70">
-            <span className="text-amber-300 font-semibold text-sm">
+            <span className="dark:text-amber-300 text-amber-100 font-semibold text-sm">
               {user.level}
             </span>
             <div className="absolute inset-0 rounded-full bg-amber-500/10 blur-xl group-hover:bg-amber-500/20 transition-all duration-300" />

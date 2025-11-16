@@ -28,7 +28,7 @@ export const SendMQPY = () => {
   };
   return (
     <div className="px-5 py-10 space-y-4 bg-linear-to-r from-neutral-300 via-neutral-100 to-neutral-200 dark:from-neutral-900 dark:via-neutral-700 dark:to-neutral-900 h-full w-full inset-shadow-sm inset-shadow-white dark:inset-shadow-neutral-500 rounded-4xl">
-      <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold bg-linear-to-r from-neutral-400 via-neutral-200 to-neutral-400 bg-clip-text text-transparent text-center tracking-wide drop-shadow-sm">
+      <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold bg-linear-to-r from-neutral-600 via-neutral-300 to-neutral-600 dark:from-neutral-400 dark:via-neutral-200 dark:to-neutral-400 bg-clip-text text-transparent text-center tracking-wide drop-shadow-sm">
         Send MQPY
       </h4>
 

@@ -51,7 +51,7 @@ export const UsdOperations = () => {
   ];
   return (
     <div className="px-5 py-10 space-y-4 bg-linear-to-r dark:from-neutral-400 dark:via-neutral-200 dark:to-neutral-400 from-neutral-900 via-neutral-700 to-neutral-900 h-full w-full inset-shadow-sm dark:inset-shadow-white inset-shadow-neutral-500 rounded-4xl backdrop-blur-lg">
-      <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold bg-linear-to-r from-neutral-400 via-neutral-200 to-neutral-400 bg-clip-text text-transparent text-center tracking-wide drop-shadow-sm">
+      <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold bg-linear-to-r dark:from-neutral-600 dark:via-neutral-300 dark:to-neutral-600 from-neutral-400 via-neutral-200 to-neutral-400 bg-clip-text text-transparent text-center tracking-wide drop-shadow-sm">
         USD Operations
       </h4>
 

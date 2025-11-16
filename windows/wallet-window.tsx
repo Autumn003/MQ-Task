@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar";
 import {
+  IconBell,
   IconBrandTabler,
+  IconDownload,
+  IconRouteSquare2,
   IconSettings,
-  IconUserBolt,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { WobbleCard } from "@/components/ui/card";
-import { FloatingNav } from "@/components/ui/floating-navbar";
 import { Dashboard } from "@/components/wallet/dashboard";
 
 export function WalletWindow() {
@@ -26,21 +26,21 @@ export function WalletWindow() {
       label: "Recieve",
       href: "#",
       icon: (
-        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconDownload className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
       label: "Notifications",
       href: "#",
       icon: (
-        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconBell className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
       label: "Gateway",
       href: "#",
       icon: (
-        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconRouteSquare2 className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
