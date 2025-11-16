@@ -11,6 +11,7 @@ import {
 import { SendMQPY } from "../dashboard/send-MQPY";
 import { AccountOverview } from "../dashboard/account-overview";
 import { UsdOperations } from "../dashboard/usd-operations";
+import { ExpandableCard } from "../ui/expandable-card";
 
 // Sample user data
 const user = {
@@ -24,12 +25,12 @@ export const Dashboard = () => {
   return (
     <div className="flex flex-1 h-full min-w-0">
       <div className="container h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900 overflow-y-auto @container">
-        {/* <div className=" flex">
+        <div className=" flex">
           <div className="w-full h-10 pt-10">
             <div className="bg-white h-full w-full"></div>
           </div>
-        </div> */}
-        <div className="@xl:grid @xl:grid-cols-3 @xl:grid-rows-4 gap-6 flex flex-col my-5">
+        </div>
+        <div className="@xl:grid @xl:grid-cols-3 @xl:grid-rows-3 gap-6 flex flex-col my-5">
           <div className="col-span-2 row-span-2 col-start-1 row-start-1">
             <WobbleCard
               containerClassName="h-full min-h-[500px] lg:min-h-[300px]"
@@ -39,7 +40,7 @@ export const Dashboard = () => {
             </WobbleCard>
           </div>
           <div className="col-start-3 row-start-1">
-            <WobbleCard
+            {/* <WobbleCard
               containerClassName="h-full min-h-[500px] lg:min-h-[300px] dark:bg-neutral-950"
               className="py-10 shadow-[0_0_20px_10px_rgba(0,0,0,0.3)_inset]"
             >
@@ -81,23 +82,16 @@ export const Dashboard = () => {
                   ))}
                 </div>
               </div>
-            </WobbleCard>
+            </WobbleCard> */}
+            <ExpandableCard />
           </div>
           <div className="col-start-1 row-start-3">
-            <WobbleCard
-              containerClassName="h-full min-h-[500px] lg:min-h-[300px]"
-              className=""
-            >
+            <div className=" relative flex h-full w-full flex-col items-center justify-center overflow-hidden">
               <SendMQPY />
-            </WobbleCard>
+            </div>
           </div>
           <div className="col-start-2 row-start-3">
-            <WobbleCard
-              containerClassName="h-full min-h-[500px] lg:min-h-[300px]"
-              className=""
-            >
-              <UsdOperations />
-            </WobbleCard>
+            <UsdOperations />
           </div>
           <div className="row-span-3 col-start-3 row-start-2">
             <WobbleCard
@@ -115,7 +109,7 @@ export const Dashboard = () => {
               </div>
             </WobbleCard>
           </div>
-          <div className="row-span-1 col-span-2 col-start-1 row-start-4">
+          {/* <div className="row-span-1 col-span-2 col-start-1 row-start-4">
             <WobbleCard
               containerClassName="col-span-1 lg:col-span-2 h-full min-h-[500px] lg:min-h-[300px]"
               className=""
@@ -130,7 +124,7 @@ export const Dashboard = () => {
                 </p>
               </div>
             </WobbleCard>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

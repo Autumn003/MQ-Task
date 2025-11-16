@@ -1,5 +1,6 @@
 "use client";
 
+import { FaeturedApps } from "@/components/home/featured-apps";
 import { Spotlight } from "@/components/home/hero";
 import { QuickAppsBar } from "@/components/home/quick-apps-bar";
 import { Window } from "@/components/ui/window";
@@ -122,27 +123,27 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="relative z-10 dark:bg-black/70 bg-slate-100/70 p-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center dark:text-gray-200 text-gray-700 mb-8">
-            More Content Below
+      {/* <div className="z-10 dark:bg-black/70 bg-slate-100/70 p-8">
+        <div className="max-w-7xl mx-auto relative">
+          <h2 className="md:text-4xl text-2xl font-bold text-center mb-8 md:mb-16 bg-linear-to-r from-sky-600 via-cyan-400 to-sky-600 bg-clip-text text-transparent dark:from-sky-900 dark:via-cyan-300 dark:to-sky-900">
+            Explore the Quantum Ecosystem
           </h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div
-                key={item}
-                className="p-6 rounded-lg bg-white/10 dark:bg-white/5 backdrop-blur-sm"
-              >
-                <h3 className="text-xl font-semibold dark:text-gray-300 text-gray-700 mb-3">
-                  Feature {item}
-                </h3>
-                <p className="dark:text-gray-400 text-gray-600">
-                  This content scrolls while the world map stays fixed in the
-                  background.
-                </p>
-              </div>
-            ))}
+          <span className="absolute top-0 w-36 h-px mx-auto -bottom-px bg-linear-to-r from-transparent via-sky-400 to-transparent " />
+          <FaeturedApps />
+        </div>
+      </div> */}
+      <div className="z-10 dark:bg-black/70 bg-slate-100/70 p-8">
+        <div className="max-w-7xl mx-auto relative">
+          <div className="relative w-fit mx-auto">
+            <h2 className="md:text-4xl text-2xl font-bold text-center mb-8 md:mb-16 bg-linear-to-r from-sky-500 via-cyan-400 to-sky-500 bg-clip-text text-transparent dark:from-sky-700 dark:via-cyan-300 dark:to-sky-700">
+              Explore the Quantum Ecosystem
+            </h2>
+
+            {/* underline */}
+            <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 md:w-52 w-36 h-px bg-linear-to-r from-transparent via-sky-400 to-transparent"></span>
           </div>
+
+          <FaeturedApps />
         </div>
       </div>
     </div>
